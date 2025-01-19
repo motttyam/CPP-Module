@@ -1,12 +1,12 @@
 CPP = c++
 CPP_FLAGS = -Wall -Werror -Wextra -std=c++98
 
-PROGRAM_NAME = megaphone
+PROGRAM_NAME = phonebook
 
 SRCDIR := ./
 INCDIR := ./includes
 
-SRC := $(SRCDIR)/megaphone.cpp
+SRC := $(wildcard $(SRCDIR)/*.cpp)
 
 INCLUDES := -I$(INCDIR)
 
