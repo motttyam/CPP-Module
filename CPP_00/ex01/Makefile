@@ -6,7 +6,9 @@ PROGRAM_NAME = phonebook
 SRCDIR := ./
 INCDIR := ./includes
 
-SRC := $(wildcard $(SRCDIR)/*.cpp)
+SRC := $(SRCDIR)/main.cpp \
+       $(SRCDIR)/PhoneBook.cpp \
+       $(SRCDIR)/Contact.cpp
 
 INCLUDES := -I$(INCDIR)
 

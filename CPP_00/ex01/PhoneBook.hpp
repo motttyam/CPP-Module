@@ -14,6 +14,7 @@ class PhoneBook
 	void handleInput(const std::string input);
 	void addNewContact();
     void searchContact();
+	bool validatePhoneNumber(const std::string& phoneNumber);
 
 private:
 	std::deque<Contact> contacts;

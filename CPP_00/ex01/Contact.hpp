@@ -19,6 +19,7 @@ class Contact
     );
     std::string formatField(const std::string field);
     void displaySummary(int index);
+	void displayDetail();
 
 private:
 	std::string firstName;

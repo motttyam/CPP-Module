@@ -16,3 +16,11 @@ void Contact::displaySummary(int index){
 			<< std::setw(CELL_WIDTH)  << formatField(this->lastName) << "|"
 			<< std::setw(CELL_WIDTH)  << formatField(this->nickname) << "|" << std::endl;
 }
+
+void Contact::displayDetail(){
+    std::cout << "FirstName: " << this->firstName << std::endl;
+    std::cout << "LastName: " << this->lastName << std::endl;
+    std::cout << "Nickname: " << this->nickname << std::endl;
+	std::cout << "Phone Number: " << this->phoneNumber << std::endl;
+    std::cout << "DarkestSecret: " << this->darkestSecret << std::endl;
+}
