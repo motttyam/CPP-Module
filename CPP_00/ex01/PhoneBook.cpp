@@ -20,17 +20,25 @@ void PhoneBook::addNewContact()
 
 	std::cout << "FirstName: ";
 	std::getline(std::cin, firstName);
+	if(!checkCinInput())
+		return ;
 
 	std::cout << "LastName: ";
 	std::getline(std::cin, lastName);
+	if(!checkCinInput())
+		return ;
 
 	std::cout << "Nickname: ";
 	std::getline(std::cin, nickname);
+	if(!checkCinInput())
+		return ;
 
 	while (true)
 	{
 		std::cout << "Phone Number: ";
 		std::getline(std::cin, phoneNumber);
+		if(!checkCinInput())
+			return ;
 		if (validatePhoneNumber(phoneNumber))
 			break;
 		else
@@ -39,6 +47,8 @@ void PhoneBook::addNewContact()
 
 	std::cout << "DarkestSecret: ";
 	std::getline(std::cin, darkestSecret);
+	if(!checkCinInput())
+		return ;
 
 	Contact newContact(firstName, lastName, nickname, phoneNumber, darkestSecret);
 	if (contacts.size() >= MAX_CONTENTS)
@@ -47,14 +57,32 @@ void PhoneBook::addNewContact()
 	return;
 }
 
+bool PhoneBook::checkCinInput (){
+	if (std::cin.eof()){
+		std::cout << "Imput EOF: Terminating this program..." << std::endl;
+		std::cin.clear();
+		exit(EXIT_SUCCESS);
+		}
+
+	// i/oに甚大なエラーが発生したとき
+	else if (std::cin.fail() || std::cin.bad()){
+		std::cout << "ERROR: A Input error has occurred." << std::endl;
+		exit(EXIT_FAILURE);
+	}
+
+	return (true);
+}
+
 bool PhoneBook::validatePhoneNumber(const std::string &phoneNumber)
 {
 	bool result = true;
 
 	// 電話番号が数字のみで構成されていることを確認
-	if (!std::all_of(phoneNumber.begin(), phoneNumber.end(), ::isdigit)){
-		std::cout << "ERROR: Please enter a phone number that contains only numeric digits." << std::endl;
-		result = false;
+	for (size_t i = 0; i < phoneNumber.length(); i++) {
+		if (!isdigit(phoneNumber.at(i))){
+			std::cout << "ERROR: Please enter a phone number that contains only numeric digits." << std::endl;
+            return false;
+		}
 	}
 
 	//電話番号の長さを確認
@@ -69,24 +97,13 @@ bool PhoneBook::validatePhoneNumber(const std::string &phoneNumber)
 void PhoneBook::searchContact()
 {
 	int index;
-	// contactが存在しないとき
+	// contactが存在しないとき	// 各項目（タイトル）しないときdisplaySummary(i + 1);
 	if (contacts.size() == 0)
 	{
 		std::cout << "No Contact" << std::endl;
 		return;
 	}
 
-	// 各項目（タイトル）を出力
-	std::cout << "---------------------------------------------" << std::endl;
-	std::cout << "|" << std::setw(CELL_WIDTH) << std::right << "Index"
-			  << "|" << std::setw(CELL_WIDTH) << "First Name"
-			  << "|" << std::setw(CELL_WIDTH) << "Last Name"
-			  << "|" << std::setw(CELL_WIDTH) << "Nickname" << "|" << std::endl;
-	std::cout << "---------------------------------------------" << std::endl;
-
-	// ユーザーがADDで入力した情報を出力
-	for (size_t i = 0; i < contacts.size(); i++)
-		contacts[i].displaySummary(i + 1);
 	std::cout << "---------------------------------------------" << std::endl;
 
 	// ユーザーにIndexを入力させる
