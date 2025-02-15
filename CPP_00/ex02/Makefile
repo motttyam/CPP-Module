@@ -1,12 +1,13 @@
-CPP = c++
+CPP = g++
 CPP_FLAGS = -Wall -Werror -Wextra -std=c++98
 
-PROGRAM_NAME = a.out
+PROGRAM_NAME = Accounts
 
 SRCDIR := ./
 INCDIR := ./includes
 
-SRC := $(wildcard $(SRCDIR)/*.cpp)
+SRC :=  $(SRCDIR)/Account.cpp \
+        $(SRCDIR)/Tests.cpp
 
 INCLUDES := -I$(INCDIR)
 
@@ -22,7 +23,7 @@ $(OBJDIR):
 	@mkdir -p $(OBJDIR)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(OBJDIR)
-	$(CPP) $(CPP_FLAGS) $(INCLUDES) -o $@ -c $<
+	$(CPP) $(CPP_FLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
 	rm -rf $(OBJDIR)
