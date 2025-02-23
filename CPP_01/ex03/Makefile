@@ -1,12 +1,15 @@
 CPP = g++
 CPP_FLAGS = -Wall -Werror -Wextra -std=c++98 #-fsanitize=address -g
 
-PROGRAM_NAME = Reference
+PROGRAM_NAME = Weapon
 
 SRCDIR := ./
 INCDIR := ./includes
 
-SRC :=  $(SRCDIR)/main.cpp
+SRC :=  $(SRCDIR)/main.cpp \
+		$(SRCDIR)/Weapon.cpp \
+		$(SRCDIR)/HumanA.cpp \
+		$(SRCDIR)/HumanB.cpp
 		
 
 INCLUDES := -I$(INCDIR)
