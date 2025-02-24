@@ -31,6 +31,8 @@ clean:
 
 fclean: clean
 	rm -f $(PROGRAM_NAME)
+	rm -f *.txt
+	rm -f *.replace
 
 re: fclean all
 

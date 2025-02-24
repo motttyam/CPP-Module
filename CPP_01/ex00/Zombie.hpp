@@ -6,7 +6,7 @@
 class Zombie
 {
   public:
-	Zombie(std::string);
+	Zombie(std::string name);
 	~Zombie();
 	void announce(void) const;
 

@@ -2,7 +2,6 @@
 # define ZOMBIE_HPP
 
 # include <string>
-# include <vector>
 # include <iostream>
 
 class Zombie
@@ -13,7 +12,6 @@ class Zombie
 	~Zombie();
 	void announce(void) const;
     void setName(std::string name);
-
 
   private:
 	std::string name;

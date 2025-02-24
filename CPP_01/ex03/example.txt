@@ -1,2 +1,0 @@
-Hello, World!
-Writing to a file in C++
