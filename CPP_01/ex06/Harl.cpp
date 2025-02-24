@@ -2,16 +2,14 @@
 
 Harl::Harl () {    
     // マップに各レベルとそれに対応する関数を設定する
-    levelComment["DEBUG"] = &Harl::debug;
-    levelComment["INFO"] = &Harl::info;
-    levelComment["WARNING"] = &Harl::warning;
-    levelComment["ERROR"] = &Harl::error;
-
-    //  マップに各レベルとそれに対応するPriorityValueを設定する
-    levelPriority["DEBUG"] = 0;
-    levelPriority["INFO"] = 1;
-    levelPriority["WARNING"] = 2;
-    levelPriority["ERROR"] = 3;
+    levelComments[0].level = "DEBUG";
+    levelComments[0].harlFunc = &Harl::debug;
+    levelComments[1].level = "INFO";
+    levelComments[1].harlFunc = &Harl::info;
+    levelComments[2].level = "WARNING";
+    levelComments[2].harlFunc = &Harl::warning;
+    levelComments[3].level = "ERROR";
+    levelComments[3].harlFunc = &Harl::error;
 }
 
 void Harl::debug () {
@@ -32,39 +30,43 @@ void Harl::error () {
 
 void Harl::complain (const std::string &level) {
 
-    // levelCommentマップからキーを探索
-    std::map<std::string, ptrHarlFunc>::iterator it = levelComment.find(level);
-    if (it != levelComment.end()) {
-        (this->*(it->second))();
+    // 構造体からキーを探索
+    for (int i = 0; i < MAX_LEVEL; i++){
+        if (levelComments[i].level == level){
+            (this->*(levelComments[i].harlFunc))();
+        }
     }
-
 }
 
 void Harl::complainFilter (const std::string &level){
 
-    // levelPriorityマップからキーを探索
-    std::map<std::string, int>::iterator it = levelPriority.find(level);
-    if (it != levelPriority.end()){
-        switch (it->second) {
-            case 0:
-                std::cout << "[DEBUG]" << std::endl;
-                this->complain("DEBUG");
-                // fall through
-            case 1:
-                std::cout << "[INFO]" << std::endl;
-                this->complain("INFO");
-                // fall through
-            case 2:
-                std::cout << "[WARNING]" << std::endl;
-                this->complain("WARNING");
-                // fall through
-            case 3:
-                std::cout << "[ERROR]" << std::endl;
-                this->complain("ERROR");
-                // fall through
-
+    int levelValue;
+    
+    // 構造体からキーを探索
+    for (levelValue = 0; levelValue < MAX_LEVEL; levelValue++){
+        if (levelComments[levelValue].level == level){
+            break;
+        } else if (levelValue == MAX_LEVEL) {
+            std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
+            return ;
         }
-    } else {
-        std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
-    } 
+    }
+    switch (levelValue) {
+        case 0:
+            std::cout << "[DEBUG]" << std::endl;
+            this->complain("DEBUG");
+            // fall through
+        case 1:
+            std::cout << "[INFO]" << std::endl;
+            this->complain("INFO");
+            // fall through
+        case 2:
+            std::cout << "[WARNING]" << std::endl;
+            this->complain("WARNING");
+            // fall through
+        case 3:
+            std::cout << "[ERROR]" << std::endl;
+            this->complain("ERROR");
+            // fall through
+    }
 }

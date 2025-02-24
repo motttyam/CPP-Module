@@ -5,6 +5,8 @@
 #include <string>
 #include <map>
 
+#define MAX_LEVEL 4
+
 class Harl {
     private:
         void debug( void );
@@ -12,26 +14,17 @@ class Harl {
         void warning( void );
         void error( void );
         typedef void (Harl::*ptrHarlFunc)();
-        std::map<std::string, ptrHarlFunc> levelComment;
-        std::map<std::string, int> levelPriority;
+        typedef struct s_levelComment {
+            std::string level;
+            ptrHarlFunc harlFunc;
+        } t_levelComment;
     
     public:
         Harl();
         void complain(const std::string &level);
         void complainFilter(const std::string &level);
+        t_levelComment levelComments[4];
 
 };
 
 #endif
-
-// switch (expression) {
-//     case constant1:
-//         // コードブロック1
-//         break;
-//     case constant2:
-//         // コードブロック2
-//         break;
-//     // 他のケース
-//     default:
-//         // デフォルトのコードブロック
-// }

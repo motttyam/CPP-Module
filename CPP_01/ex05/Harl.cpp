@@ -2,10 +2,14 @@
 
 Harl::Harl () {    
     // マップに各レベルとそれに対応する関数を設定する
-    levelComment["DEBUG"] = &Harl::debug;
-    levelComment["INFO"] = &Harl::info;
-    levelComment["WARNING"] = &Harl::warning;
-    levelComment["ERROR"] = &Harl::error;
+    levelComments[0].level = "DEBUG";
+    levelComments[0].harlFunc = &Harl::debug;
+    levelComments[1].level = "INFO";
+    levelComments[1].harlFunc = &Harl::info;
+    levelComments[2].level = "WARNING";
+    levelComments[2].harlFunc = &Harl::warning;
+    levelComments[3].level = "ERROR";
+    levelComments[3].harlFunc = &Harl::error;
 }
 
 void Harl::debug () {
@@ -26,13 +30,10 @@ void Harl::error () {
 
 void Harl::complain (const std::string &level) {
 
-    // マップからキーを探索
-    std::map<std::string, ptrHarlFunc>::iterator it = levelComment.find(level);
-    if (it != levelComment.end()) {
-        (this->*(it->second))();
+    // 構造体からキーを探索
+    for (int i = 0; i < MAX_LEVEL; i++){
+        if (levelComments[i].level == level){
+            (this->*(levelComments[i].harlFunc))();
+        }
     }
-    else {
-        std::cout << "Unknown Level" << std::endl;
-    }
-
 }
