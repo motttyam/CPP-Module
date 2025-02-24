@@ -11,20 +11,23 @@
 # include <limits>
 # include <string>
 
-# define MAX_CONTENTS 8
+# define MAX_CONTACTS 8
 
 class PhoneBook
 {
+  private:
+	  Contact contacts[8];
+    int _currentIndex;
+
   public:
-	PhoneBook();
-	void handleInput(const std::string input);
-	void addNewContact();
+    PhoneBook();
+    void handleInput(const std::string input);
+    void addNewContact();
+    void validateContent(const std::string &prompt, std::string *input);
     bool checkCinInput();
     void searchContact();
-    bool validatePhoneNumber(const std::string &phoneNumber);
-
-  private:
-	std::deque<Contact> contacts;
+    int validateIndex();
+    void validatePhoneNumber(std::string *phoneNumber);
 };
 
 #endif

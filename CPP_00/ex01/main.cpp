@@ -6,15 +6,13 @@ int	main(void)
     PhoneBook PhoneBook;
     std::string input;
 
-
     while (1)
     {
         std::cout << "Imput Command(ADD, SEARCH, EXIT)" << std::endl;
         std::getline(std::cin, input);
-        if(input == "")
-            break;
+        PhoneBook.checkCinInput();
         PhoneBook.handleInput(input);
-        input = "";
+        input.clear();
     }
     return (EXIT_FAILURE);
 }

@@ -1,6 +1,7 @@
 #include "PhoneBook.hpp"
+#include "Contact.hpp"
 
-PhoneBook::PhoneBook() {}
+PhoneBook::PhoneBook(): _currentIndex(0) {}
 
 void PhoneBook::handleInput(const std::string input)
 {
@@ -14,47 +15,73 @@ void PhoneBook::handleInput(const std::string input)
 		std::cout << "Command is Invalid" << std::endl;
 }
 
+//////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
+
 void PhoneBook::addNewContact()
 {
-	std::string firstName, lastName, nickname, phoneNumber, darkestSecret;
-
-	std::cout << "FirstName: ";
-	std::getline(std::cin, firstName);
-	if(!checkCinInput())
-		return ;
-
-	std::cout << "LastName: ";
-	std::getline(std::cin, lastName);
-	if(!checkCinInput())
-		return ;
-
-	std::cout << "Nickname: ";
-	std::getline(std::cin, nickname);
-	if(!checkCinInput())
-		return ;
-
-	while (true)
-	{
-		std::cout << "Phone Number: ";
-		std::getline(std::cin, phoneNumber);
-		if(!checkCinInput())
-			return ;
-		if (validatePhoneNumber(phoneNumber))
-			break;
-		else
-			std::cout << "[CAUTION] Please enter a phone number that is only valid within the country." << std::endl;
+	std::string firstName, lastName, nickname, phoneNumber, darkestSeakret;
+	
+	// 各項目ごとにユーザーがインプットを行う
+	validateContent("FirstName: ", &firstName);
+	validateContent("LastName: ", &lastName);
+	validateContent("Nickname: ", &nickname);
+	validatePhoneNumber(&phoneNumber);
+	validateContent("DarkestSecret: ", &darkestSeakret);
+	
+	// 入力された情報をContactクラスとして追加する
+	if (_currentIndex == 8){
+		for (int i = 0; i < 7; i++) {
+			contacts[i] = contacts[i + 1];
+		}
+		contacts[_currentIndex - 1] = Contact(firstName, lastName, nickname, phoneNumber, darkestSeakret);
+	} else if (_currentIndex < 8 && _currentIndex >= 0) {
+		contacts[_currentIndex] = Contact(firstName, lastName, nickname, phoneNumber, darkestSeakret);
+		_currentIndex++;
+	} else {
+		std::cout << "Fatal Error: Index is overflow or underflow" << std::endl;
+		exit (1);
 	}
+}
 
-	std::cout << "DarkestSecret: ";
-	std::getline(std::cin, darkestSecret);
-	if(!checkCinInput())
-		return ;
+void PhoneBook::validateContent (const std::string &prompt, std::string *input) {
+	
+	while ((*input).empty()) {
+		std::cout << prompt;
+		std::getline(std::cin, *input);
+		if(!checkCinInput() || (*input).empty()) {
+			std::cout << "Invalid Input: No Input" << std::endl;
+		}
+	}
+}
 
-	Contact newContact(firstName, lastName, nickname, phoneNumber, darkestSecret);
-	if (contacts.size() >= MAX_CONTENTS)
-		contacts.pop_front();
-	contacts.push_back(newContact);
-	return;
+void PhoneBook::validatePhoneNumber(std::string *phoneNumber){
+
+	while ((*phoneNumber).empty()) {
+		std::cout << "PhoneNumber: ";
+		std::getline(std::cin, *phoneNumber);
+		if(!checkCinInput() || (*phoneNumber).empty()) {
+			std::cout << "Invalid Input: No Input" << std::endl;
+			continue;
+		}
+
+		// 電話番号が数字のみで構成されていることを確認
+		for (size_t i = 0; i < (*phoneNumber).length(); i++) {
+			if (!isdigit((*phoneNumber).at(i))){
+				std::cout << "ERROR: Please enter a phone number that contains only numeric digits." << std::endl;
+				(*phoneNumber).clear();
+				continue;
+			}
+		}
+
+		//電話番号の長さを確認
+		if (!(*phoneNumber).empty() && ((*phoneNumber).length() > 15 || (*phoneNumber).length() < 3)){
+			std::cout << "ERROR: Phone number should be between 10 and 15 digits long." << std::endl;
+			(*phoneNumber).clear();
+			continue;
+		}
+	}
 }
 
 bool PhoneBook::checkCinInput (){
@@ -73,45 +100,36 @@ bool PhoneBook::checkCinInput (){
 	return (true);
 }
 
-bool PhoneBook::validatePhoneNumber(const std::string &phoneNumber)
-{
-	bool result = true;
-
-	// 電話番号が数字のみで構成されていることを確認
-	for (size_t i = 0; i < phoneNumber.length(); i++) {
-		if (!isdigit(phoneNumber.at(i))){
-			std::cout << "ERROR: Please enter a phone number that contains only numeric digits." << std::endl;
-            return false;
-		}
-	}
-
-	//電話番号の長さを確認
-	if (phoneNumber.length() > 15 || phoneNumber.length() < 3){
-		std::cout << "ERROR: Phone number should be between 10 and 15 digits long." << std::endl;
-		result = false;
-	}
-	
-	return (result);
-}
+//////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
 
 void PhoneBook::searchContact()
 {
 	int index;
-	// contactが存在しないとき	// 各項目（タイトル）しないときdisplaySummary(i + 1);
-	if (contacts.size() == 0)
+	// contactが存在しないとき	
+	if (_currentIndex == 0)
 	{
 		std::cout << "No Contact" << std::endl;
 		return;
 	}
 
+	// contactが存在するとき
+	std::cout << "|" << std::setw(CELL_WIDTH) << "Index" << "|"
+		<< std::setw(CELL_WIDTH) << "FirstName" << "|"
+		<< std::setw(CELL_WIDTH) << "LastName" << "|"
+		<< std::setw(CELL_WIDTH) << "NickName" << "|"
+		<< std::endl;
+	for (int i = 0; i < _currentIndex; i++) {
+		contacts[i].displaySummary((int)i + 1);
+	}
 	std::cout << "---------------------------------------------" << std::endl;
 
 	// ユーザーにIndexを入力させる
 	std::cout << "Enter the Index of the contact to display" << std::endl;
-	std::cin >> index;
-	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	index = PhoneBook::validateIndex();
 
-	if (index < 1 || (size_t)index > contacts.size())
+	if (index < 1 || index > _currentIndex)
 	{
 		std::cout << "Invalid Index" << std::endl;
 		return;
@@ -119,4 +137,30 @@ void PhoneBook::searchContact()
 
 	// ユーザーが入力したIndexを返す
 	contacts[index - 1].displayDetail();
+}
+
+int  PhoneBook::validateIndex () {
+	
+	std::string input;
+
+	while (input.empty()) {
+		// ユーザーが文字列を入力する
+		std::getline(std::cin, input);
+
+		// 標準入力が正しいか確認する
+		if(!checkCinInput() || input.empty()) {
+			std::cout << "Invalid Input: No Input" << std::endl;
+			continue;
+		}
+		
+		// 文字列に含まれるcharがすべて数字であるかを確認する
+		for (size_t i = 0; i < input.size(); i++){
+			if (isdigit(input.at(i)) == false) {
+				input.clear();
+				std::cout << "Invalid Input: Input should be only digit" << std::endl;
+				continue;
+			}
+		}
+	}
+	return (atoi(input.c_str()));
 }
