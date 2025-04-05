@@ -15,7 +15,7 @@ class Fixed {
         Fixed(const int value);
         Fixed(const float value);
         Fixed(const Fixed &other);
-       https://www.notion.so/familyalbum/1bb2f9df7cab809693e7ddc8fa1d6409?pvs=4 ~Fixed();
+        ~Fixed();
 
         // General func
         int getRawBits() const ;
@@ -34,11 +34,23 @@ class Fixed {
         bool operator==(Fixed const &other);
         bool operator!=(Fixed const &other);
 
-        // Arithmetic operator　明日やる
+        // Arithmetic operator
         Fixed operator+(Fixed const &other);
         Fixed operator-(Fixed const &other);
         Fixed operator*(Fixed const &other);
         Fixed operator/(Fixed const &other);
+
+        // incrments / decrements
+        Fixed operator++();
+        Fixed operator++(int);
+        Fixed operator--();
+        Fixed operator--(int);
+
+        // overloaded
+        static Fixed& min(Fixed& a, Fixed& b);
+        static Fixed const& min(Fixed const& a, Fixed const& b);
+        static Fixed& max(Fixed& a, Fixed& b);
+        static Fixed const& max(Fixed const& a, Fixed const& b);
 
         // Insertion Operator
         friend std::ostream& operator<<(std::ostream &os, const Fixed &value);
