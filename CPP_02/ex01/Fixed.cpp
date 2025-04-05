@@ -43,9 +43,9 @@ int Fixed::getRawBits() const {
 }
 
 // 内部の生のビット表現 (整数値) を設定する
-void Fixed::setRawBits(int const row) {
+void Fixed::setRawBits(int const raw) {
     std::cout << "setRawBits member function called" << std::endl;
-    this->_value = row;    
+    this->_value = raw;    
 }
 
 int Fixed::toInt(void) const {
