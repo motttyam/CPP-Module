@@ -7,7 +7,8 @@ SRCDIR := ./
 INCDIR := ./
 
 SRC :=  $(SRCDIR)/main.cpp \
-		$(SRCDIR)/Fixed.cpp
+		$(SRCDIR)/Fixed.cpp \
+		$(SRCDIR)/Point.cpp
 		
 
 INCLUDES := -I$(INCDIR)

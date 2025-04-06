@@ -1,23 +1,23 @@
 #include "Fixed.hpp"
 
 Fixed::Fixed() : _value(0) {
-    std::cout << "Default constructor called" << std::endl;
+    // std::cout << "Default constructor called" << std::endl;
 }
 
 Fixed::Fixed(const int value) : _value(value << Fixed::_fractional_bits) {
-    std::cout << "Int constructor called" << std::endl;
+    // std::cout << "Int constructor called" << std::endl;
 }
 
 Fixed::Fixed(const float value) : _value(static_cast<int>(roundf(value * (1 << Fixed::_fractional_bits)))) {
-    std::cout << "Float constructor called" << std::endl;
+    // std::cout << "Float constructor called" << std::endl;
 }
 
 Fixed::Fixed(const Fixed &other) : _value(other._value) {
-    std::cout << "Copy constructor called" << std::endl;
+    // std::cout << "Copy constructor called" << std::endl;
 }
 
 Fixed::~Fixed() {
-    std::cout << "Destructor called" << std::endl;
+    // std::cout << "Destructor called" << std::endl;
 }
 
 int Fixed::getRawBits() const {
