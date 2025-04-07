@@ -60,3 +60,26 @@ unsigned int ClapTrap::getEP() const {
 unsigned int ClapTrap::getATK() const {
     return (this->_ATK);
 }
+
+// setter func
+void ClapTrap::setName(const std::string& name) {
+    this->_name = name;
+}
+
+void ClapTrap::setHP(unsigned int HP) {
+    this->_HP = HP;
+}
+
+void ClapTrap::setEP(unsigned int EP) {
+    this->_EP = EP;
+}
+
+void ClapTrap::setATK(unsigned int ATK) {
+    this->_ATK = ATK;
+}
+
+void ClapTrap::setAll(unsigned int HP, unsigned int EP, unsigned int ATK) {
+    this->_HP = HP;
+    this->_EP = EP;
+    this->_ATK = ATK;
+}
