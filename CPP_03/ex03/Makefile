@@ -1,5 +1,5 @@
-CPP = g++
-CPP_FLAGS = -Wall -Werror -Wextra -std=c++98 #-fsanitize=address -g
+CPP = c++
+CPP_FLAGS = -Wall -Werror -Wextra -std=c++98 -Wshadow #-fsanitize=address -g
 
 PROGRAM_NAME = DiamondTrap
 
