@@ -1,62 +1,91 @@
 #include "ClapTrap.hpp"
 
+ClapTrap::ClapTrap() : _name("") {
+    std::cout << "Default Constructor called" << std::endl;
+}
+
 ClapTrap::ClapTrap(const std::string& name) 
-    : _name(name), _HP(10), _EP(10), _ATK(5) {
-    std::cout << "ClapTrap constructor Called for " << this->_name << std::endl;
+    : _name(name), _HP(10), _EP(10), _ATK(0) {
+    std::cout << "Constructor called for " << this->getName() << std::endl;
+}
+
+ClapTrap::ClapTrap(const ClapTrap& other)
+    : _name(other.getName()), _HP(other.getHP()), _EP(other.getEP()), _ATK(other.getATK()) {
+    std::cout << "Copy constructor called for " << other.getName() << std::endl;
+}
+
+ClapTrap& ClapTrap::operator=(const ClapTrap& other){
+    std::cout << "Copy assignment operator called for " << other.getName() << std::endl;
+    if (this != &other) {
+        _name = other.getName();
+        _HP = other.getHP();
+        _EP = other.getEP();
+        _ATK = other.getATK();
+    }
+    return (*this);
 }
 
 ClapTrap::~ClapTrap(){
-    std::cout << "ClapTrap destructor called for " << this->_name << std::endl;
+    std::cout << "Destructor called for " << this->getName() << std::endl;
+    std::cout << "Destroying ClapTrap with " 
+              << this->getHP() << " hit points, " 
+              << this->getEP() << " energy points, and " 
+              << this->getATK() << " attack damage." << std::endl;
 }
 
 
 void ClapTrap::attack(const std::string& target) {
-    if (this->_HP == 0 || this->_EP == 0) {
-        std::cout << _name << " is unable to attack!" << std::endl;
+    if (this->getHP() == 0 || this->getEP() == 0) {
+        std::cout << this->getName() << " is unable to attack!" << std::endl;
         return;
     }
-    std::cout << _name << " attacks " << target 
-              << ", causing " << _ATK 
+    std::cout << getName() << " attacks " << target 
+              << ", causing " << getATK()
               << " points of damage!" << std::endl;
-    _EP--;
+    setEP(this->getEP() - 1);
 }
+
 void ClapTrap::takeDamage(unsigned int amount) {
-    if (this->_HP == 0) {
-        std::cout << _name << " is already destroyed!" << std::endl;
+    if (this->getHP() == 0) {
+        std::cout << this->getName() << " is already destroyed!" << std::endl;
         return;
     }
-    this->_HP -= amount;
-    if (this->_HP <= 0) {
-        this->_HP = 0;
-        std::cout << this->_name << " has been destroyed!" << std::endl;
+    if (this->getHP() <= amount) {
+        this->setHP(0);
+        std::cout << this->getName() << " has been destroyed!" << std::endl;
     } else {
-        std::cout << this->_name << " takes " << amount 
+        setHP(getHP() - amount);
+        std::cout << this->getName() << " takes " << amount 
                   << " points of damage! Remaining HP: " 
-                  << this->_HP << std::endl;
+                  << this->getHP() << std::endl;
     }
 }
+
 void ClapTrap::beRepaired(unsigned int amount) {
-    if (this->_HP == 0 || this->_EP == 0) {
-        std::cout << this->_name << " is unable to be repaired!" << std::endl;
+    if (this->getHP() == 0 || this->getEP() == 0) {
+        std::cout << this->getName() << " is unable to be repaired!" << std::endl;
         return;
     }
-    _HP += amount;
-    _EP--;
-    std::cout << this->_name << " Repairs itself for " 
+    this->setHP(this->getHP() + amount);
+    setEP(getEP() - 1);
+    std::cout << this->getName() << " Repairs itself for " 
               << amount << " hit points! Current HP: " 
-              << this->_HP << std::endl;
+              << this->getHP() << std::endl;
 }
 
 // getter func
 const std::string& ClapTrap::getName() const {
     return (this->_name);
 }
+
 unsigned int ClapTrap::getHP() const {
     return (this->_HP);
 }
+
 unsigned int ClapTrap::getEP() const {
     return (this->_EP);
 }
+
 unsigned int ClapTrap::getATK() const {
     return (this->_ATK);
 }
@@ -78,7 +107,8 @@ void ClapTrap::setATK(unsigned int ATK) {
     this->_ATK = ATK;
 }
 
-void ClapTrap::setAll(unsigned int HP, unsigned int EP, unsigned int ATK) {
+void ClapTrap::setAll(const std::string& name, unsigned int HP, unsigned int EP, unsigned int ATK) {
+    this->_name = name;
     this->_HP = HP;
     this->_EP = EP;
     this->_ATK = ATK;
