@@ -1,15 +1,15 @@
-CPP = g++
+CPP = c++
 CPP_FLAGS = -Wall -Werror -Wextra -std=c++98 #-fsanitize=address -g
 
-PROGRAM_NAME = Point
+PROGRAM_NAME = bsp
 
 SRCDIR := ./
 INCDIR := ./
 
 SRC :=  $(SRCDIR)/main.cpp \
 		$(SRCDIR)/Fixed.cpp \
-		$(SRCDIR)/Point.cpp
-		
+		$(SRCDIR)/Point.cpp \
+		$(SRCDIR)/Bsp.cpp
 
 INCLUDES := -I$(INCDIR)
 
