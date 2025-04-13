@@ -1,21 +1,21 @@
 #include "ClapTrap.hpp"
 
 ClapTrap::ClapTrap() : _name("") {
-    std::cout << "Default Constructor called" << std::endl;
+    std::cout << "[ClapTrap]Default Constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(const std::string& name) 
     : _name(name), _HP(10), _EP(10), _ATK(0) {
-    std::cout << "Constructor called for " << this->getName() << std::endl;
+    std::cout << "[ClapTrap]Constructor called for " << this->getName() << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap& other)
     : _name(other.getName()), _HP(other.getHP()), _EP(other.getEP()), _ATK(other.getATK()) {
-    std::cout << "Copy constructor called for " << other.getName() << std::endl;
+    std::cout << "[ClapTrap]Copy constructor called for " << other.getName() << std::endl;
 }
 
 ClapTrap& ClapTrap::operator=(const ClapTrap& other){
-    std::cout << "Copy assignment operator called for " << other.getName() << std::endl;
+    std::cout << "[ClapTrap]Copy assignment operator called for " << other.getName() << std::endl;
     if (this != &other) {
         _name = other.getName();
         _HP = other.getHP();
@@ -26,7 +26,7 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& other){
 }
 
 ClapTrap::~ClapTrap(){
-    std::cout << "Destructor called for " << this->getName() << std::endl;
+    std::cout << "[ClapTrap]Destructor called for " << this->getName() << std::endl;
     std::cout << "Destroying ClapTrap with " 
               << this->getHP() << " hit points, " 
               << this->getEP() << " energy points, and " 
