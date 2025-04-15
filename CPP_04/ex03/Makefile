@@ -1,19 +1,17 @@
 CPP = g++
 CPP_FLAGS = -Wall -Werror -Wextra -std=c++98 #-fsanitize=address -g
 
-PROGRAM_NAME = Animal
+PROGRAM_NAME = Materia
 
 SRCDIR := src
 INCDIR := include
 
-SRC :=  $(SRCDIR)/main.cpp \
-		$(SRCDIR)/Animal.cpp \
-		$(SRCDIR)/Cat.cpp \
-		$(SRCDIR)/Dog.cpp \
-		$(SRCDIR)/WrongAnimal.cpp \
-		$(SRCDIR)/WrongCat.cpp \
-		$(SRCDIR)/Brain.cpp \
-
+SRC :=  $(SRCDIR)/Character.cpp \
+		$(SRCDIR)/AMateria.cpp \
+		$(SRCDIR)/Cure.cpp \
+		$(SRCDIR)/Ice.cpp \
+		$(SRCDIR)/main.cpp \
+		$(SRCDIR)/MateriaSource.cpp
 		
 
 INCLUDES := -I$(INCDIR)
