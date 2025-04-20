@@ -7,13 +7,14 @@ Dog::Dog() {
     std::cout << "[Dog]Constructor called" << std::endl;
 }
 
-Dog::Dog(const Dog& other) {
+Dog::Dog(const Dog& other) : Animal(other) {
     this->brain = new Brain(*other.brain);
     std::cout << "[Dog]Copy Constructor called" << std::endl;
 }
 
 Dog& Dog::operator=(const Dog& other) {
     if (this != &other) {
+        this->setType(other.getType());
         delete this->brain;
         this->brain = new Brain(*other.brain);
     }

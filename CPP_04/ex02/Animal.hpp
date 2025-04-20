@@ -9,10 +9,12 @@ class Animal {
         std::string type;
     public:
         Animal();
+        Animal(const std::string& type);
+        Animal(const Animal& other);
+        Animal& operator=(const Animal& other);
         virtual ~Animal();
         std::string getType() const;
         void setType(const std::string& type);
-        // Abstract Classとなるように pure virtual classとして設定
         virtual void makeSound() const = 0;
 };
 

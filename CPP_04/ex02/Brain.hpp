@@ -5,11 +5,10 @@
 #include <string>
 #include <algorithm>
 
-#define IDEA_LENGTH 100
-
 class Brain {
     private:
-        std::string ideas[IDEA_LENGTH];
+        static const int ideaLength = 100;
+        std::string ideas[ideaLength];
     public:
         Brain();
         Brain(const Brain& other);
