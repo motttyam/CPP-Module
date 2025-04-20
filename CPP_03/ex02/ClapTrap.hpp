@@ -11,7 +11,10 @@ class ClapTrap {
         unsigned int _ATK;
 
     public:
+        ClapTrap();
         ClapTrap(const std::string& name);
+        ClapTrap(const ClapTrap& other);
+        ClapTrap& operator=(const ClapTrap& other);
         ~ClapTrap();
 
         void attack(const std::string& target);
@@ -29,7 +32,7 @@ class ClapTrap {
         void setHP(unsigned int HP);
         void setEP(unsigned int EP);
         void setATK(unsigned int ATK);
-        void setAll(unsigned int HP, unsigned int EP, unsigned int ATK);
+        void setAll(const std::string& name, unsigned int HP, unsigned int EP, unsigned int ATK);
 
 };
 
