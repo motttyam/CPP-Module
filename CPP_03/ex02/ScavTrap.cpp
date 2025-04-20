@@ -30,10 +30,10 @@ ScavTrap& ScavTrap::operator=(const ScavTrap& other) {
 
 ScavTrap::~ScavTrap() {
     std::cout << "[ScavTrap]Destructor called for " << this->getName() << std::endl;
-    std::cout << "Destroying ScavTrap with " 
-        << this->_HP << " hit points, " 
-        << this->_EP << " energy points, and " 
-        << this->_ATK << " attack damage." << std::endl;
+    // std::cout << "Destroying ScavTrap with " 
+    //     << this->_HP << " hit points, " 
+    //     << this->_EP << " energy points, and " 
+    //     << this->_ATK << " attack damage." << std::endl;
 }
 
 void ScavTrap::guardGate() {

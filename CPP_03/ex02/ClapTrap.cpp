@@ -27,10 +27,10 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& other){
 
 ClapTrap::~ClapTrap(){
     std::cout << "[ClapTrap]Destructor called for " << this->getName() << std::endl;
-    std::cout << "Destroying ClapTrap with " 
-              << this->getHP() << " hit points, " 
-              << this->getEP() << " energy points, and " 
-              << this->getATK() << " attack damage." << std::endl;
+    // std::cout << "Destroying ClapTrap with " 
+    //           << this->getHP() << " hit points, " 
+    //           << this->getEP() << " energy points, and " 
+    //           << this->getATK() << " attack damage." << std::endl;
 }
 
 
