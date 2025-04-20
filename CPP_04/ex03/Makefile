@@ -1,10 +1,10 @@
-CPP = g++
+CPP = c++
 CPP_FLAGS = -Wall -Werror -Wextra -std=c++98 #-fsanitize=address -g
 
 PROGRAM_NAME = Materia
 
-SRCDIR := src
-INCDIR := include
+SRCDIR := ./
+INCDIR := ./
 
 SRC :=  $(SRCDIR)/Character.cpp \
 		$(SRCDIR)/AMateria.cpp \
