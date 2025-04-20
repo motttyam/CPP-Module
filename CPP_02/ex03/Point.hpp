@@ -33,10 +33,12 @@ class Point {
         
 };
 
-bool bsp(Point const &a, Point const &b, Point const &c, Point const &point);
 
-        // Insertion operator
+// Insertion operator
 std::ostream& operator<<(std::ostream &os, const Point &value);
+
+// Bsp func
+bool bsp(Point const &a, Point const &b, Point const &c, Point const &point);
 
 
 
