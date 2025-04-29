@@ -2,19 +2,19 @@
 
 Character::Character() : _name(""), _ground_i(0) {
     for (int i = 0; i < slotSize; i++) {
-        this->_slots[i] = nullptr;
+        this->_slots[i] = NULL;
     }
     for (int i = 0; i < groundSize; i++) {
-        this->_grounds[i] = nullptr;
+        this->_grounds[i] = NULL;
     }
 }
 
 Character::Character(const std::string& name) : _name(name), _ground_i(0) {
     for (int i = 0; i < slotSize; i++) {
-        this->_slots[i] = nullptr;
+        this->_slots[i] = NULL;
     }
     for (int i = 0; i < groundSize; i++) {
-        this->_grounds[i] = nullptr;
+        this->_grounds[i] = NULL;
     }
 }
 
@@ -23,13 +23,13 @@ Character::Character(const Character& other) : _name(other.getName()), _ground_i
         if (other._slots[i])
             this->_slots[i] = other._slots[i]->clone();
         else
-            this->_slots[i] = nullptr;
+            this->_slots[i] = NULL;
     }
     for (int i = 0; i < groundSize; i++) {
         if (other._grounds[i])
             this->_grounds[i] = other._grounds[i]->clone();
         else
-            this->_grounds[i] = nullptr;
+            this->_grounds[i] = NULL;
     }
 }
 
@@ -50,13 +50,13 @@ Character& Character::operator=(const Character& other) {
             if (other._slots[i])
                 this->_slots[i] = other._slots[i]->clone();
             else
-                this->_slots[i] = nullptr;
+                this->_slots[i] = NULL;
         }
         for (int i = 0; i < groundSize; i++) {
             if (other._grounds[i])
                 this->_grounds[i] = other._grounds[i]->clone();
             else
-                this->_grounds[i] = nullptr;
+                this->_grounds[i] = NULL;
         }
     }
     return (*this);
@@ -106,7 +106,7 @@ void Character::unequip(int idx) {
         return ;
     }
     this->_grounds[_ground_i++] = this->_slots[idx];
-    this->_slots[idx] = nullptr;
+    this->_slots[idx] = NULL;
 }
 
 void Character::use(int idx, ICharacter& target) {

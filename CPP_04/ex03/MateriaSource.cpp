@@ -7,7 +7,7 @@ MateriaSource::MateriaSource(const MateriaSource& other) {
         if (other.sources[i])
             this->sources[i] = other.sources[i]->clone();
         else
-            this->sources[i] = nullptr;
+            this->sources[i] = NULL;
     }
 }
 
@@ -23,7 +23,7 @@ MateriaSource& MateriaSource::operator=(const MateriaSource& other) {
             if (other.sources[i])
                 this->sources[i] = other.sources[i]->clone();
             else
-                this->sources[i] = nullptr;
+                this->sources[i] = NULL;
         }
     }
     return (*this);
@@ -60,5 +60,5 @@ AMateria* MateriaSource::createMateria(const std::string& type) {
         }
     }
     std::cout << "Cannot find the selected Materia. Please try again." << std::endl;
-    return (nullptr);
+    return (NULL);
 }
