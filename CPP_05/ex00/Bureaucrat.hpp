@@ -10,7 +10,6 @@ class Bureaucrat {
         int _grade;    
 
     public:
-        
         //  Orthodox Canonical Form準拠
         Bureaucrat();
         Bureaucrat(const std::string &name, int grade);
