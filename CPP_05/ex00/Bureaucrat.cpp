@@ -23,9 +23,7 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat &other) {
     return (*this);
 }
 
-Bureaucrat::~Bureaucrat(){
-	std::cout << "[Bureaucrat]Deconstructor for " << this->getName() << " called" << std::endl;
-}
+Bureaucrat::~Bureaucrat(){}
 
 const std::string& Bureaucrat::getName() const {
     return (this->_name);
