@@ -1,4 +1,5 @@
-#include <Bureaucrat.hpp>
+#include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 Bureaucrat::Bureaucrat(){};
 
@@ -23,9 +24,7 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat &other) {
     return (*this);
 }
 
-Bureaucrat::~Bureaucrat(){
-	std::cout << "[Bureaucrat]Deconstructor for " << this->getName() << " called" << std::endl;
-}
+Bureaucrat::~Bureaucrat(){}
 
 const std::string& Bureaucrat::getName() const {
     return (this->_name);
@@ -45,6 +44,15 @@ void Bureaucrat::decrementGrade(){
     this->_grade++;
     if (this->getGrade() > 150)
         throw Bureaucrat::GradeTooLowException();
+}
+
+void Bureaucrat::signForm(Form& form) {
+     try {
+        form.beSigned(*this);
+        std::cout << this->getName() << "signed " << form.getFormName() << std::endl;
+    } catch (std::exception &e) {
+        std::cerr << "Exception (signForm): " << e.what() << '\n';
+    }
 }
 
 std::ostream &operator<<(std::ostream &os, const Bureaucrat &value){

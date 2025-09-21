@@ -8,32 +8,43 @@
 class Form {
     private:
         std::string _formName;
-        bool        _issigned;
+        bool        _isSigned;
         int         _requiredSignGrade;
         int         _requiredExecGrade;
+
     public:
+        // Orthodox Canonical Form
         Form();
-        Form(const std::string& formName, bool besigned, int requiredSignGrade, int requiredExecGrade);
+        Form(const std::string& formName, int requiredSignGrade, int requiredExecGrade);
         Form(const Form &other);
         Form &operator=(const Form &other);
         ~Form();
-        void besigned(const Bureaucrat& bureaucrat);
+        
+        // getter func
+        std::string const &getFormName() const;
+        bool getIsSigned() const;
+        int  getRequiredSignGrade() const;
+        int  getRequiredExecGrade() const;
+        
+        // member func
+        void beSigned(const Bureaucrat& bureaucrat);
 
-        // // exception class ここをやる
-        // class GradeTooHighException : public std::exception {
-        //     public:
-        //         virtual const char * what() const throw() {
-        //             return ("Bureaucrat::GradeTooHighException: Grade is too high (grade < 1)!");
-        //         }
-        // };
-        // class GradeTooLowException : public std::exception {
-        //     public:
-        //         virtual const char * what() const throw() {
-        //             return ("Bureaucrat::GradeTooLowException: Grade is too low (grade > 150)!");
-        //         }
-        // };
+        // exception class
+        class GradeTooHighException : public std::exception {
+            public:
+                virtual const char * what() const throw() {
+                    return ("Form::GradeTooHighException: Grade is too high (grade < 1)!");
+                }
+        };
+        class GradeTooLowException : public std::exception {
+            public:
+                virtual const char * what() const throw() {
+                    return ("Form::GradeTooLowException: Grade is too low (grade > 150)!");
+                }
+        };
 };
 
+// outstream
 std::ostream& operator<<(std::ostream &os, const Form &value);
 
 #endif
