@@ -7,7 +7,8 @@ SRCDIR := ./
 INCDIR := ./
 
 SRC :=  $(SRCDIR)/main.cpp \
-		$(SRCDIR)/Bureaucrat.cpp
+		$(SRCDIR)/Bureaucrat.cpp \
+		$(SRCDIR)/Form.cpp
 
 INCLUDES := -I$(INCDIR)
 
