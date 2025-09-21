@@ -1,6 +1,6 @@
 #include "Form.hpp"
 
-Form::Form() {};
+Form::Form(){};
 
 Form::Form(const std::string &formName, int requiredSignGrade, int requiredExecGrade)
     : _formName(formName),
@@ -32,6 +32,8 @@ Form & Form::operator=(const Form &other) {
     }
     return (*this);
 }
+
+Form::~Form(){};
 
 std::string const &Form::getFormName() const
 {
