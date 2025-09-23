@@ -6,9 +6,9 @@ Form::Form(const std::string &formName, int requiredSignGrade, int requiredExecG
       _requiredSignGrade(requiredSignGrade),
       _requiredExecGrade(requiredExecGrade)
 {
-    if (this->getRequiredExecGrade() > 150 || this->getRequiredSignGrade() > 150)
+    if (this->getRequiredExecGrade() < 1 || this->getRequiredSignGrade() < 1)
         throw Form::GradeTooHighException();
-    else if (this->getRequiredExecGrade() < 1 || this->getRequiredSignGrade() < 1)
+    if (this->getRequiredExecGrade() > 150 || this->getRequiredSignGrade() > 150)
         throw Form::GradeTooLowException();
 }
 
@@ -18,9 +18,9 @@ Form::Form(const Form &other)
       _requiredSignGrade(other.getRequiredSignGrade()),
       _requiredExecGrade(other.getRequiredExecGrade())
 {
-    if (this->getRequiredExecGrade() > 150 || this->getRequiredSignGrade() > 150)
+    if (this->getRequiredExecGrade() < 1 || this->getRequiredSignGrade() < 1)
         throw Form::GradeTooHighException();
-    else if (this->getRequiredExecGrade() < 1 || this->getRequiredSignGrade() < 1)
+    if (this->getRequiredExecGrade() > 150 || this->getRequiredSignGrade() > 150)
         throw Form::GradeTooLowException();
 }
 
@@ -55,7 +55,6 @@ int Form::getRequiredExecGrade() const
 void Form::beSigned(const Bureaucrat& bureaucrat) {
     if (this->getRequiredSignGrade() < bureaucrat.getGrade()) {
         throw Form::GradeTooLowException();
-        return ;
     }
     this->_isSigned = true;
 }
