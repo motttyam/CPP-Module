@@ -74,9 +74,10 @@ void AForm::execute(const Bureaucrat& b) const {
 
 std::ostream &operator<<(std::ostream &os, const AForm &value) {
     os  << value.getFormName() 
-        << ", is Signed " << (value.getIsSigned() ? "Yes": "No")
-        << ", grade required to sign" << value.getRequiredSignGrade()
-        << ", grade required to execute" << value.getRequiredExecGrade()
+        << ", target: " << value.getTarget()
+        << ", signed: " << (value.getIsSigned() ? "Yes": "No")
+        << ", grade required to sign: " << value.getRequiredSignGrade()
+        << ", grade required to execute: " << value.getRequiredExecGrade()
         << ".";
     return (os);
 }

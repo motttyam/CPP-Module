@@ -64,6 +64,6 @@ class AForm {
 };
 
 // outstream
-std::ostream& operator<<(std::ostream &os, const Form &value);
+std::ostream& operator<<(std::ostream &os, const AForm &value);
 
 #endif
