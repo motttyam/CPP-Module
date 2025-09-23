@@ -4,8 +4,8 @@
 #include <iostream>
 #include <sstream>
 #include <string>
-#include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "../Bureaucrat.hpp"
+#include "../Form.hpp"
 
 
 // C++98 でも使える簡易キャプチャ
