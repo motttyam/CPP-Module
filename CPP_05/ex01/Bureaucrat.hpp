@@ -10,10 +10,10 @@ class Bureaucrat {
     private:
         const std::string _name;
         int _grade;    
+        Bureaucrat();
 
     public:
         //  Orthodox Canonical Form準拠
-        Bureaucrat();
         Bureaucrat(const std::string &name, int grade);
         Bureaucrat(const Bureaucrat &other);
         Bureaucrat& operator=(const Bureaucrat &other);

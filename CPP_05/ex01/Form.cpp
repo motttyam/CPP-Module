@@ -1,7 +1,5 @@
 #include "Form.hpp"
 
-Form::Form(){};
-
 Form::Form(const std::string &formName, int requiredSignGrade, int requiredExecGrade)
     : _formName(formName),
       _isSigned(false),
