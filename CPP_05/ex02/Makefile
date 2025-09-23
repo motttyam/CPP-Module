@@ -28,8 +28,7 @@ TEST_NAMES := test_01_constructors \
               test_03_grade_change \
               test_04_beSigned \
               test_05_signForm \
-# 			  test_06_executeForm
-# 			  test_07_exceptions
+			  test_06_executeForm
 
 # 重要：出力先は TEST_BINDIR にする
 TEST_BINS  := $(addprefix $(TEST_BINDIR)/,$(TEST_NAMES))
