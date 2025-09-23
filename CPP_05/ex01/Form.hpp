@@ -7,10 +7,10 @@
 
 class Form {
     private:
-        std::string _formName;
+        const std::string _formName;
         bool        _isSigned;
-        int         _requiredSignGrade;
-        int         _requiredExecGrade;
+        const int         _requiredSignGrade;
+        const int         _requiredExecGrade;
 
     public:
         // Orthodox Canonical Form
