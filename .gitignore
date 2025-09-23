@@ -1,3 +1,7 @@
+# CPP05
+*_shrubbery
+
+
 # vscode
 .vscode*
 
@@ -42,6 +46,7 @@
 /test
 
 # テスト用ソースファイル
+test*
 test_*.cpp
 *_test.cpp
 tests/
