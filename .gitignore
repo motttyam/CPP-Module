@@ -30,3 +30,14 @@
 *.exe
 *.out
 *.app
+
+# === Test related ===
+
+# テスト用の実行ファイル
+/bin_tests/
+/test
+
+# テスト用ソースファイル
+test_*.cpp
+*_test.cpp
+tests/
