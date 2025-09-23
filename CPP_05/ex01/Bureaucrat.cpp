@@ -33,22 +33,22 @@ int Bureaucrat::getGrade() const {
 }
 
 void Bureaucrat::incrementGrade() {
-    this->_grade--;
-    if (this->getGrade() < 1)
+    if (this->getGrade() <= 1)
         throw Bureaucrat::GradeTooHighException();
+    this->_grade--;
 }
 
 void Bureaucrat::decrementGrade(){
-    this->_grade++;
-    if (this->getGrade() > 150)
+    if (this->getGrade() >= 150)
         throw Bureaucrat::GradeTooLowException();
+    this->_grade++;
 }
 
 void Bureaucrat::signForm(Form& form) const {
      try {
         form.beSigned(*this);
         std::cout << this->getName() << " signed " << form.getFormName() << std::endl;
-    } catch (std::exception &e) {
+    } catch (const std::exception &e) {
         std::cout << this->getName() << " couldn't sign " << form.getFormName() << " because " << e.what() << std::endl;
     }
 }
