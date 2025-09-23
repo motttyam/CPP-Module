@@ -11,10 +11,10 @@ class Form {
         bool        _isSigned;
         const int         _requiredSignGrade;
         const int         _requiredExecGrade;
+        Form();
 
     public:
         // Orthodox Canonical Form
-        Form();
         Form(const std::string& formName, int requiredSignGrade, int requiredExecGrade);
         Form(const Form &other);
         Form &operator=(const Form &other);
