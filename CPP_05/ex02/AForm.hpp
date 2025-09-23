@@ -11,7 +11,7 @@ class AForm {
         bool        		_isSigned;
         const int         	_requiredSignGrade;
         const int         	_requiredExecGrade;
-        const std::string 		_target;
+        const std::string 	_target;
 		AForm();
 
     public:
@@ -30,7 +30,7 @@ class AForm {
         
         // member func
         void beSigned(const Bureaucrat& b);
-		void execute(const Bureaucrat& b) const; // yaru
+		void execute(const Bureaucrat& b) const;
 
 		// pure virtual func
 		virtual void doExecute(const Bureaucrat& b) const = 0 ;
