@@ -57,7 +57,7 @@ std::string const &AForm::getTarget() const {
 
 void AForm::beSigned(const Bureaucrat& b) {
     if (this->getRequiredSignGrade() < b.getGrade()){
-        throw AForm::GradeTooLowException();
+        throw AForm::SignGradeTooLowException();
     }
     this->_isSigned = true;
 }

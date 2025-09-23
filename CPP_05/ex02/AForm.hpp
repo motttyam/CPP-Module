@@ -48,6 +48,12 @@ class AForm {
                     return ("AForm::GradeTooLowException: Grade is too low (grade > 150)!");
                 }
         };
+        class SignGradeTooLowException : public std::exception {
+            public:
+                virtual const char * what() const throw() {
+                    return ("AForm::GradeTooLowException: Grade is too low to sign form!");
+                }
+        };
         class ExecGradeTooLowException : public std::exception {
             public:
                 virtual const char * what() const throw() {
