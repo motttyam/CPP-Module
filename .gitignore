@@ -46,7 +46,4 @@
 /test
 
 # テスト用ソースファイル
-test*
-test_*.cpp
-*_test.cpp
-tests/
+
