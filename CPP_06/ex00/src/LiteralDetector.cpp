@@ -85,9 +85,9 @@ bool  LiteralDetector::isDoubleLit(const std::string& literal){
 	size_t lastDot = literal.rfind('.');
 	size_t len = literal.length();
 	size_t fracBeg = dot + 1;
-	size_t fracEnd = len - 1;
+	size_t fracEnd = len;
 
-	if (len < 4)
+	if (len < 3)
 		return (false);
     if (literal[len - 1] == 'f')
         return (false);

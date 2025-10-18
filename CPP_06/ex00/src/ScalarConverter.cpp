@@ -17,6 +17,7 @@ void ScalarConverter::convert(const std::string &l){
 		std::cout << "int: impossible" << std::endl;
 		std::cout << "float: impossible" << std::endl;
 		std::cout << "double: impossible" << std::endl;
+		return ; 
 	}
 	Formatter::printFormatted(p);
 }
