@@ -1,8 +1,26 @@
 #include "LiteralDetector.hpp"
-#include "LiteralDetector.hpp"
+#include "Type.hpp"
 #include <iostream>
 #include <cctype>
 #include <string>
+
+Type LiteralDetector::detectType(const std::string& l){
+    if (l.empty())
+		return (UNKNOWN_T);
+	if (LiteralDetector::isPseudoFloat(l))
+        return (FLOAT_T);
+    if (LiteralDetector::isPseudoDouble(l))
+        return (DOUBLE_T);
+    if (LiteralDetector::isCharLit(l))
+		return (CHAR_T);
+	if (LiteralDetector::isIntLit(l))
+		return (INT_T);
+	if (LiteralDetector::isFloatLit(l))
+		return (FLOAT_T);
+	if (LiteralDetector::isDoubleLit(l))
+		return (DOUBLE_T);
+	return (UNKNOWN_T);
+}
 
 bool LiteralDetector::isPseudoFloat(const std::string& literal){
     if (literal == "nanf" || literal == "+inff" || literal == "-inff")

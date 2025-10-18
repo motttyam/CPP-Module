@@ -1,6 +1,7 @@
 #ifndef LITERAL_DETECTOR_HPP
 #define LITERAL_DETECTOR_HPP
 
+#include "Type.hpp"
 #include <string>
 #include <iostream>
 #include <cstdlib>
@@ -13,6 +14,7 @@ class LiteralDetector {
         LiteralDetector& operator=(const LiteralDetector& other);
         ~LiteralDetector();
     public:
+        static Type detectType(const std::string& l);
         static bool isPseudoFloat(const std::string& literal);
         static bool isPseudoDouble(const std::string& literal);
         static bool isCharLit(const std::string& literal);
