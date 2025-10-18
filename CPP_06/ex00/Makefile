@@ -24,7 +24,10 @@ OBJS := $(SRC:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 
 # ========= tests =========
 TESTDIR    := tests
-TEST_NAMES := test_01_constructors
+TEST_NAMES := scalar_converter_spec \
+              literal_detector_spec \
+              literal_parser_spec \
+              formatter_spec
 
 # 重要：出力先は TEST_BINDIR にする
 TEST_BINS  := $(addprefix $(TEST_BINDIR)/,$(TEST_NAMES))
